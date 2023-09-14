@@ -1,0 +1,39 @@
+<%-include('../layout/header_without_image.ejs')%>
+
+  <!-- food section -->
+
+  <div class="container" >
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-9.2 text-center p-5 m-5 shadow-lg p-3 mb-5 bg-body rounded" style="border: 1px solid black;border-radius: 10px !important; background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+        background-blend-mode: screen;">
+            <h2 style="font-size: bolder;" class="mb-4">Thank You for shopping with us</h2>
+            <h5 style="font-size: bolder;" class="mb-4">Some of your Payment informations.</h5>
+            
+            <table class="table">
+                <thead>
+                    <th>PaymentToken</th>
+                    <th>PaymentMode</th>
+                    <th>Email</th>
+                    <th>TotalAmount</th>
+                    <th>OrderId</th>
+                    <th>Status</th>
+                </thead>
+                <tbody>
+                    <td><%=stripeToken%></td>
+                    <td><%=stripeTokenType%></td>
+                    <td><%=stripeEmail%></td>
+                    <td><%=total%></td>
+                    <td><%=order_id%></td>
+                    <td ><%=status%></td>
+                </tbody>
+            </table>
+            
+            <h5 style="font-size: bolder;" class="mt-4 pt-4">We will deliver your products within 2 hours.</h5>
+        </div>
+    </div>
+  </div>
+
+  <!-- end food section -->
+
+  <!-- footer section -->
+  <%-include('../layout/footer.ejs')%>

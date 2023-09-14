@@ -1,0 +1,125 @@
+<%-include('../layout/header_without_image.ejs')%>
+
+  <!-- food section -->
+
+  <section class="food_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Your Order
+        </h2>
+      </div>
+
+   
+
+
+  <section class="cart container py-5">
+
+    
+
+
+    <div class="container">
+    </div>
+
+
+
+
+    <table class="pt-5">
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+
+
+<%if(cart &&cart.length){%>
+<%cart.forEach((item)=>{%>
+
+          <tr>
+            <td>
+              <div class="product-info">
+                <img style="width: 75px; height: 75px" src="images/<%=item.image%>">
+                <div>
+                  <p><%=item.name%></p>
+                   <%if(item.sales_price){%>
+                    <small><span>Rs</span><%=item.sales_price%></small>
+                   <%}else{%>
+                    <small><span>Rs</span><%=item.price%></small>
+                    <%}%>
+                  <br>
+                  <form method="post" action="/remove_product"> 
+                    <input type="hidden" name="id" value="<%=item.id%>">
+                    <input type="submit" name="remove-btn" class="remove-btn" value="remove">
+                  </form>
+                </div>
+              </div>
+            </td>
+
+            <td>
+         <form method="post" action="/edit_product_quantity">
+                <input type="hidden" name="id" value="<%=item.id%>">
+                 <input type="submit" value="-" class="edit-btn " name="decrease">
+      
+                <input type="text" name="quantity" value="<%=item.quantity%>" readonly="">
+
+                <input type="submit" value="+" class="edit-btn" name="increase">
+              </form>
+            </td>
+
+            <td>
+              <%if(item.sales_price){%>
+                <span class="product-price">Rs <%=item.sales_price*item.quantity%></span>
+                <%}else{%>
+                  <span class="product-price">Rs <%=item.price*item.quantity%></span>
+                <%}%>
+            </td>
+          </tr>
+          <%})%>
+        <%}else{%>
+          <h1>your cart is empty</h1>
+        <%}%>
+
+    </table>
+
+
+    <div class="cart-total">
+      <table>
+  
+        <tr>
+          <td>Total Price</td>
+   
+               <td>Rs <%=total%></td>
+      
+        </tr>
+    
+      
+      </table>
+    </div>
+    
+
+    <div class="checkout-container">
+     
+      <form method="get" action="/checkout">
+        <input type="submit" class="btn checkout-btn" value="Checkout" name="">
+      </form>
+      
+      
+      
+    </div>
+    <button type="submit" class="btn btn-secondary " style="margin-top: -80px;"><a href="/products" style="color:white">  Back</a></button>
+
+
+
+
+
+  </section>
+
+
+
+
+
+    </div>
+  </section>
+
+  <!-- end food section -->
+<%-include('../layout/footer.ejs')%>
